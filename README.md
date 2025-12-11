@@ -43,5 +43,19 @@ Max Voting (or Majority Voting) simply takes all the models predictions and take
 
 <p align="center"> <img width="341" height="109" alt="image" src="https://github.com/user-attachments/assets/d079ef39-7b9f-401b-88ad-fd6ba8773a4e" /></p>
 
+Here, $N(V_j)$ represents the number of votes for the $j_{th}$ class, $V_{ij}$ is the vote for the $j_{th}$ of the $i_{th}$ classifier and O is the predicted final class. The simple averaging (AV) differs from this in the way that all the predictions (or classifications) are averaged for each class probability, and the final decision for each sample is the highest probability class. The following image illustrates it.
+
+<p align="center"><img width="341" height="140" alt="image" src="https://github.com/user-attachments/assets/bbb40749-0294-4099-b169-35b362773920" /></p>
+
+Here, the notation was changed for $S_{ij}$ to note that this refers to the predictions (not label assignment) of each model, and $S_j$ is the probability predicted for the $j_{th}$ class. One problem when using this technique is that AV assumes equality in model performance. That may not be the case in all cases, and a bad model could worsen the overall performance. AV in general is better fusion technique than MV, but both assume that equality.
+
+The last voting technique was the weighted averaging. Typically it consists of first calculate a metric (accuracy for balanced databases), and then calculate a relative weight for the model weighing. This weighing becomes dissimilar and penalizes more worse models, and the variants can make the penalization more or less severe. There exists two variants: One that uses an exponential formula for the penalization term calculation, and other one that don't. An advantage is that this method avoids the equality assumption, and could provide a model enhanced performance.
+
+<p align="center"><img width="341" height="150" alt="image" src="https://github.com/user-attachments/assets/e6be6542-62b8-4bc9-8603-c65d27306556" /> <img width="341" height="150" alt="image" src="https://github.com/user-attachments/assets/5d5fa6bc-2a7f-4c29-9a95-7609ce03e3d8" /></p>
+
+Here are appreciated the two variants. $MT_i$ refers to the metric used for the performance calculation. The alpha term is the weight multiplied by the original prediction, to obtain the weighted averaging for each class ($MWV_j$) and the highest prediction match the assigned class. The factor f=10 in the standard case, but it can be modified in case more or less penalization is desired.
+
 ### Results
+
+We performed experiments with all of those techniques for each module alone (i.e. three CNN). Then, we mixed the results of each module, achieving the results presented in the next tables. We measured accuracy, precision, recall, f1-score, matthews correlation coefficient and auc-roc for the final model (ensemble per modality and simple weighted mixture for intermodality. The external tested databases are one public and one private. The private one is from a mexican population and the public one is from a pakistani population (available [here](https://data.mendeley.com/datasets/2rnnz5nz74/1) )  
 ### Conclusions
